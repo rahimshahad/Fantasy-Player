@@ -10,20 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_22_061909) do
+ActiveRecord::Schema.define(version: 2021_03_22_234250) do
 
-  create_table "playlists", force: :cascade do |t|
-    t.string "title"
-    t.string "song"
-    t.string "artist"
+  create_table "players", force: :cascade do |t|
+    t.string "name"
+    t.string "position"
+    t.string "nationality"
+    t.integer "pace"
+    t.integer "physical"
+    t.integer "shooting"
+    t.integer "defending"
+    t.integer "passing"
+    t.integer "dribbling"
+    t.string "nickname"
     t.integer "user_id"
-    t.index ["user_id"], name: "index_playlists_on_user_id"
+    t.index ["user_id"], name: "index_players_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password"
     t.string "username"
+    t.string "password_digest"
   end
 
 end
