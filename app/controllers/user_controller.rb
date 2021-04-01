@@ -7,11 +7,15 @@ class UserController < ApplicationController
 
    post '/signup' do
     if params[:users][:password] == params[:users][:password_confirmation] && params[:users][:email] && params[:users][:username]
-        @user = User.create(params[:users])
-        session[:user_id] = @user.id
-        redirect to '/users/#{@user.id}'
+        @user = User.new(params[:users])
+        if @user.save
+            session[:user_id] = @user.id
+            redirect to "/users/#{@user.id}"
+        else
+            redirect to "/signup"
+        end
     else
-        redirect to '/signup'
+        redirect to "/signup"
     end
 end
 
