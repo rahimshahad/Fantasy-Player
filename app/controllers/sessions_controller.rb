@@ -1,7 +1,11 @@
 class SessionsController < ApplicationController
     get "/login" do
-        
+        if !logged_in?
         erb :'users/login'
+        else
+            @user = User.find(session[:user_id])
+            redirect to "/users/#{@user.id}"
+        end
     end
 
     post '/login' do
@@ -16,7 +20,7 @@ class SessionsController < ApplicationController
 
     get "/logout" do 
         session.destroy
-        redirect to "/signup"
+        redirect to "/"
     end
 
     get "/users/:id" do

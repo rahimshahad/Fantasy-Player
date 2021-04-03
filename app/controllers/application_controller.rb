@@ -7,6 +7,7 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     set :method_override, true
      enable :sessions
+     set :session_secret,  "secret"
   end
 
   get '/' do

@@ -1,11 +1,9 @@
 class PlayerController < ApplicationController
-
-    
-
-    #index
     get '/players' do
-
-        erb :"players/index"
+        # if current_user
+            @player = Player.all
+        # end
+        erb :"/players/index"
     end
 
     #new
@@ -17,8 +15,13 @@ class PlayerController < ApplicationController
 
     #create
     post '/players' do
+        @player = Player.new(params[:players])
+        # @player.id = session[:user_id]
+        @player.save
+        redirect to "/players/#{@player.id}"
     end
-
+   
+   
     #show
     get 'players/:id' do
 
