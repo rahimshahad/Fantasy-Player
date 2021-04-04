@@ -41,7 +41,7 @@ class PlayerController < ApplicationController
           if @player.user == current_user
              erb :'/players/edit'
           else
-        #     #  flash[:error] = "YOU CAN'T EDIT THIS ENTRY"
+          flash[:error] = "YOU CAN'T EDIT THIS ENTRY"
              redirect to "/players"
          end  
 
@@ -65,7 +65,7 @@ class PlayerController < ApplicationController
             @player.delete
             redirect to "/players"
         else
-       #     #  flash[:error] = "YOU CAN'T EDIT THIS ENTRY"
+         flash[:error] = "YOU ARE NOT AUTHORIZED TO DELETE THIS ENTRY"
             redirect to "/players"
         end  
     end

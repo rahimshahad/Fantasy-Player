@@ -1,5 +1,5 @@
 require './config/environment'
-# require 'sinatra/flash'
+ require 'sinatra/flash'
 class ApplicationController < Sinatra::Base
 
   configure do
@@ -8,7 +8,7 @@ class ApplicationController < Sinatra::Base
     set :method_override, true
      enable :sessions
      set :session_secret,  "secret"
-    #  register Sinatra::Flash
+      register Sinatra::Flash
   end
 
   get '/' do
