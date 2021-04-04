@@ -14,6 +14,7 @@ class SessionsController < ApplicationController
             session[:user_id] = @user.id
             redirect to "/users/#{@user.id}"
         else
+            # flash[:error] = "Email and Password do not match"
             redirect to "/login"
         end
     end

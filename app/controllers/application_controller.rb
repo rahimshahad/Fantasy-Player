@@ -1,5 +1,5 @@
 require './config/environment'
-
+# require 'sinatra/flash'
 class ApplicationController < Sinatra::Base
 
   configure do
@@ -8,6 +8,7 @@ class ApplicationController < Sinatra::Base
     set :method_override, true
      enable :sessions
      set :session_secret,  "secret"
+    #  register Sinatra::Flash
   end
 
   get '/' do
@@ -17,7 +18,7 @@ class ApplicationController < Sinatra::Base
 
   helpers do
     def current_user
-      @current_user ||= User.find_by(id: session[:user_id])
+      @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
     end 
 
     def logged_in?

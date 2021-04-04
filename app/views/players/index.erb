@@ -2,6 +2,7 @@
 
 <div>
   <% @player.each do |player|%>
+    <h3><%=player.id%></h3>
     <h4><%= player.name%></h4>
     <p>Position: <%= player.position%></p>
     <p>Nationality: <%= player.nationality%></p>

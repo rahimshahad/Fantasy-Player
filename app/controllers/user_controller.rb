@@ -1,8 +1,12 @@
 class UserController < ApplicationController
 
     get '/signup' do
-
+        if !logged_in?
         erb :'/users/new_user'
+        else
+            @user = User.find(session[:user_id])
+            redirect to "/players"
+        end
     end
 
    post '/signup' do

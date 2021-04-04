@@ -1,15 +1,25 @@
 <h1>YOUR PLAYER(S)</h1>
 <div>
-<h4><%= player.name%></h4>
-    <p>Position: <%= player.position%></p>
-    <p>Nationality: <%= player.nationality%></p>
+<h4><%= @player.name%></h4>
+    <p>Position: <%= @player.position%></p>
+    <p>Nationality: <%= @player.nationality%></p>
     <h4> ABILITIES </h4>
-    <p>Pace: <%= player.pace%></p>
-    <p>Shooting: <%= player.shooting%></p>
-    <p>Physical: <%= player.physical%></p>
-    <p>Passing: <%= player.passing%></p>
-    <p>Dribbling: <%= player.dribbling%></p>
-    <p>Defending: <%= player.defending%></p>
+    <p>Pace: <%= @player.pace%></p>
+    <p>Shooting: <%= @player.shooting%></p>
+    <p>Physical: <%= @player.physical%></p>
+    <p>Passing: <%= @player.passing%></p>
+    <p>Dribbling: <%= @player.dribbling%></p>
+    <p>Defending: <%= @player.defending%></p>
     <h4> OTHER INFORMATION </h4>
-    <p>Nickname: <%= player.nickname%></p>
+    <p>Nickname: <%= @player.nickname%></p>
 </div>
+
+<br/>
+    <form method="POST" action="/players/<%= @player.id %>/delete">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="submit" value="Delete Player!">
+    </form
+
+    <nav>
+    <a href="/players/<%= @player.id%>/edit">Edit</a>
+    </nav>

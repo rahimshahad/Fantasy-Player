@@ -1,1 +1,16 @@
-<h1>EDIT </h1>
+<h1>Make Changes To Your Player Here</h1>
+<form action= "/players/<%= @player.id%>" method="post">
+<input type="hidden" name="_method" value="PATCH">
+<p> Player Name:<input type= "text" name="players[name]" value="<%@player.name%>"/></p> 
+<p> Position: <input type= "text" name="players[position]" value="<%@player.position%>"></p>
+<p> Nationality: <input type= "text" name="players[nationality]" value="<%@player.nationality%>"</p>
+<p> Pace:<input type= "text" name="players[pace]" value="<%@player.pace%>"></input></p>
+<p> Shooting: <input type= "text" name="players[shooting]" value="<%@player.shooting%>"><p>
+<p> Defending: <input type= "text" name="players[defending]" value="<%@player.defending%>"></p>
+<p> Passing: <input type= "text" name="players[passing]" value="<%@player.passing%>"</p>
+<p> Dribbling: <input type= "text" name="players[dribbling]" value="<%@player.dribbling%>"></p>
+<p> Physical: <input type= "text" name="players[physical]" value="<%@player.physical%>"</p>
+<p> Nickname: <input type= "text" name="players[nickname]" value="<%@player.nickname%>"</p>
+
+<input type="submit" value="EDIT PLAYER">
+</form>
