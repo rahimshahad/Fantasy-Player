@@ -17,10 +17,14 @@ class PlayerController < ApplicationController
 
     #create
     post '/players' do
-        @player = Player.new(params[:players])
-        #@player.id = session[:user_id]
-        @player.save
-        redirect to "/players"
+        if params[:players][:name] == "" || params[:players][:position] == "" || params[:players][:nationality] == "" || params[:players][:pace] == "" || params[:players][:dribbling] == "" || params[:players][:defending] == "" || params[:players][:physical] == "" || params[:players][:nickname] == "" || params[:players][:passing] == "" || params[:players][:shooting] == ""
+            redirect to "/players/new"
+        else
+            @player = Player.new(params[:players])
+            @player.user_id = session[:user_id]
+             @player.save
+             redirect to "/players"
+         end
     end
    
  
@@ -45,17 +49,25 @@ class PlayerController < ApplicationController
 
     #update
     patch "/players/:id" do
-        @player = Player.find_by_id(params[:id])
-        @player.update(params[:players])
-         redirect to "/players/#{@player.id}"
+        if params[:players][:name] == "" || params[:players][:position] == "" || params[:players][:nationality] == "" || params[:players][:pace] == "" || params[:players][:dribbling] == "" || params[:players][:defending] == "" || params[:players][:physical] == "" || params[:players][:nickname] == "" || params[:players][:passing] == "" || params[:players][:shooting] == ""
+            redirect to "/players/#{params[:id]}}/edit"
+        else
+            @player = Player.find_by_id(params[:id])
+            @player.update(params[:players])
+            redirect to "/players/#{@player.id}"
+        end
     end
 
     #delete
     delete "/players/:id/delete" do
         @player = Player.find_by_id(params[:id])
-        if @player
-          @player.delete
-        end
-        redirect to "/players"
-    end 
+        if @player.user == current_user
+            @player.delete
+            redirect to "/players"
+        else
+       #     #  flash[:error] = "YOU CAN'T EDIT THIS ENTRY"
+            redirect to "/players"
+        end  
+    end
+
 end
